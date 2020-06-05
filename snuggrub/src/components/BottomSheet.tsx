@@ -1,11 +1,12 @@
 import React from 'react';
+import { Theme } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
-export const BottomSheetHeader = () => {
+export const BottomSheetHeader = ({ theme }: { theme: Theme }) => {
 	return (
-		<View style={styles.header}>
-			<View style={styles.panelHeader}>
-				<View style={styles.panelHandle} />
+		<View style={[styles.header, { backgroundColor: theme.colors.background }]}>
+			<View style={[styles.panelHeader, { backgroundColor: theme.colors.background }]}>
+				<View style={[styles.panelHandle, { backgroundColor: theme.colors.text }]} />
 			</View>
 		</View>
 	);
@@ -13,20 +14,18 @@ export const BottomSheetHeader = () => {
 
 const styles = StyleSheet.create({
 	header: {
-		backgroundColor: '#f7f5eee8',
-		shadowColor: '#000000',
-		paddingTop: 20,
+		paddingTop: 10,
 		borderTopLeftRadius: 20,
 		borderTopRightRadius: 20,
 	},
 	panelHeader: {
+		// justifyContent: 'flex-start',
 		alignItems: 'center',
 	},
 	panelHandle: {
-		width: 40,
-		height: 8,
+		width: 35,
+		height: 4,
 		borderRadius: 4,
-		backgroundColor: '#00000040',
 		marginBottom: 10,
 	},
 });

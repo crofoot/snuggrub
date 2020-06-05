@@ -13,12 +13,13 @@ import MapView from 'react-native-maps';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { MapPoints } from './components/MapPoints';
 import { SearchModal } from './components/SearchModal';
-import { Surface, Searchbar } from 'react-native-paper';
+import { Surface, Searchbar, useTheme } from 'react-native-paper';
 import { BottomSheetHeader } from 'components/BottomSheet';
 import { LocationResults } from './components/LocationResults';
 import { SafeAreaView, StyleSheet, Keyboard } from 'react-native';
 
 export const HomeScreen = () => {
+	const theme = useTheme();
 	// Screen State
 	const [search, setSearch] = React.useState('');
 	const [places, setPlaces] = React.useState<GooglePlace[]>([]);
@@ -87,8 +88,8 @@ export const HomeScreen = () => {
 			<BottomSheet
 				ref={sheetRef}
 				initialSnap={0}
-				renderHeader={BottomSheetHeader}
-				snapPoints={['20%', '50%', '90%']}
+				renderHeader={() => <BottomSheetHeader theme={theme} />}
+				snapPoints={['25%', '50%', '80%']}
 				renderContent={() => <LocationResults locationResults={locationResults} setPlaces={setPlaces} />}
 			/>
 		</React.Fragment>

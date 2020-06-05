@@ -49,7 +49,7 @@ export const LocationResults = (props: Props) => {
 		);
 
 	return (
-		<Surface style={{ height: '100%' }}>
+		<View style={{ height: '100%', backgroundColor: theme.colors.background }}>
 			<View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10 }}>
 				<Button uppercase={false} mode='contained' onPress={handleFetch}>
 					<Subheading>Nearby</Subheading>
@@ -62,6 +62,6 @@ export const LocationResults = (props: Props) => {
 				</Button>
 			</View>
 			<GooglePlaceList placeResults={nearbyResults} />
-		</Surface>
+		</View>
 	);
 };

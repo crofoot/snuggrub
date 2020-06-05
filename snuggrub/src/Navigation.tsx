@@ -24,6 +24,7 @@ import { User } from 'models/User';
 import { useSelector } from 'react-redux';
 import { useTheme } from 'react-native-paper';
 import { UserService } from 'services/UserService';
+import { Dimensions } from 'react-native';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -94,8 +95,7 @@ const ApplicationDrawer = () => {
 			}}
 			drawerStyle={{
 				backgroundColor: theme.colors.background,
-				borderTopRightRadius: 50,
-				borderBottomRightRadius: 50,
+				width: Dimensions.get('screen').width * 0.6,
 				paddingRight: 15,
 			}}>
 			<Drawer.Screen name='Home' component={HomeScreen} />
