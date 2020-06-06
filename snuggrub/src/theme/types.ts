@@ -2,26 +2,32 @@ import { Theme, DefaultTheme, DarkTheme, configureFonts } from 'react-native-pap
 import { primaryColor, secondaryColor, darkSecondaryColor, errorColor } from './colors';
 
 
-const fontConfig = {
-	default: {
+const defaultFont = {
+
 	  regular: {
-		fontFamily: 'PlayfairDisplay',
-		fontWeight: 'normal',
-	  },
-	  medium: {
-		fontFamily: 'PlayfairDisplay',
-		fontWeight: 'normal',
-	  },
-	  light: {
-		fontFamily: 'PlayfairDisplay',
-		fontWeight: 'normal',
-	  },
-	  thin: {
-		fontFamily: 'PlayfairDisplay',
-		fontWeight: 'normal',
-	  },
-	},
+	fontFamily: 'PlayfairDisplay',
+	fontWeight: 'normal',
+  },
+  medium: {
+	fontFamily: 'PlayfairDisplay',
+	fontWeight: 'normal',
+  },
+  light: {
+	fontFamily: 'PlayfairDisplay',
+	fontWeight: 'normal',
+  },
+  thin: {
+	fontFamily: 'PlayfairDisplay',
+	fontWeight: 'normal',
+  }
+}
+
+const fontConfig = {
+	ios : defaultFont,
+	android : defaultFont,
+	default : defaultFont
   };
+
 
 export const lightTheme: Theme = {
 	dark: false,
@@ -64,7 +70,8 @@ export const darkTheme: Theme = {
 		background: '#17181a',
 		onBackground: '#1f1f1f',
 	},
-	fonts: DarkTheme.fonts,
+		// @ts-ignore
+		fonts: configureFonts(fontConfig),
 	roundness: 4,
 };
 

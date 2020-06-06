@@ -9,7 +9,7 @@ import { LocationService } from 'services/LocationService';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 
 // components
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { MapPoints } from './components/MapPoints';
 import { SearchModal } from './components/SearchModal';
@@ -65,10 +65,29 @@ export const HomeScreen = () => {
 			};
 		}
 	};
+
+
+const MyMarker = () => {
+	if(locationResults.data){
+	
+	return <Marker
+		key='my-location-key'
+		coordinate={{
+		longitude: locationResults.data.coords.longitude,
+		latitude: locationResults.data.coords.latitude,
+		}}
+		title='My Location'
+	/>
+	} else {
+		return null
+	}
+}
+	
 	return (
 		<React.Fragment>
 			<Surface style={styles.surface}>
 				<MapView style={StyleSheet.absoluteFillObject} initialRegion={region()}>
+					<MyMarker />
 					<MapPoints places={places} />
 				</MapView>
 				<SafeAreaView>
