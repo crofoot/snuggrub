@@ -16,7 +16,7 @@ import { SearchModal } from './components/SearchModal';
 import { Surface, Searchbar, useTheme } from 'react-native-paper';
 import { BottomSheetHeader } from 'components/BottomSheet';
 import { LocationResults } from './components/LocationResults';
-import { SafeAreaView, StyleSheet, Keyboard } from 'react-native';
+import { SafeAreaView, StyleSheet, Keyboard, Image } from 'react-native';
 
 export const HomeScreen = () => {
 	const theme = useTheme();
@@ -69,15 +69,22 @@ export const HomeScreen = () => {
 
 const MyMarker = () => {
 	if(locationResults.data){
-	
 	return <Marker
 		key='my-location-key'
 		coordinate={{
 		longitude: locationResults.data.coords.longitude,
 		latitude: locationResults.data.coords.latitude,
 		}}
+		// image={require('../../../../assets/images/marker.png')}
+		// style={{height : 10, width : 2}}
 		title='My Location'
-	/>
+	>
+		<Image
+			source={require('../../../../assets/images/marker.png')}
+		style={{height : 35, width : 35}}
+		resizeMode='contain'
+		/>
+	</Marker>
 	} else {
 		return null
 	}
