@@ -1,5 +1,27 @@
-import { Theme, DefaultTheme, DarkTheme } from 'react-native-paper';
+import { Theme, DefaultTheme, DarkTheme, configureFonts } from 'react-native-paper';
 import { primaryColor, secondaryColor, darkSecondaryColor, errorColor } from './colors';
+
+
+const fontConfig = {
+	default: {
+	  regular: {
+		fontFamily: 'PlayfairDisplay',
+		fontWeight: 'normal',
+	  },
+	  medium: {
+		fontFamily: 'PlayfairDisplay',
+		fontWeight: 'normal',
+	  },
+	  light: {
+		fontFamily: 'PlayfairDisplay',
+		fontWeight: 'normal',
+	  },
+	  thin: {
+		fontFamily: 'PlayfairDisplay',
+		fontWeight: 'normal',
+	  },
+	},
+  };
 
 export const lightTheme: Theme = {
 	dark: false,
@@ -19,7 +41,8 @@ export const lightTheme: Theme = {
 		background: '#fff', // grayish blue
 		onBackground: '#f5f5f5', // grayish blue
 	},
-	fonts: DefaultTheme.fonts,
+	// @ts-ignore
+	fonts: configureFonts(fontConfig),
 	roundness: 4,
 };
 

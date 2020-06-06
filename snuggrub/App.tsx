@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 import { initializeApp } from 'firebase/app';
 
+import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import { Application } from './src/Application';
@@ -22,6 +23,11 @@ let firebaseConfig = {
 initializeApp(firebaseConfig);
 // end of firebase initialization
 
+let customFonts = {
+	// 'PlayfairDisplay-Italic': require('./assets/fonts/Playfair-Display/PlayfairDisplay-Italic.ttf'),
+	'PlayfairDisplay': require('./assets/Fonts/Playfair-Display/PlayfairDisplay.ttf'),
+  };
+
 export default function App() {
 	const [isAppReady, setIsAppReady] = React.useState(false);
 
@@ -32,7 +38,7 @@ export default function App() {
 			return Asset.fromModule(image).downloadAsync();
 		});
 
-		return Promise.all(cacheImages);
+		return Promise.all([Font.loadAsync(customFonts), ...cacheImages]);
 	};
 
 	if (!isAppReady) {
