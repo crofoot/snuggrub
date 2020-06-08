@@ -32,7 +32,7 @@ export default function App() {
 	const [isAppReady, setIsAppReady] = React.useState(false);
 
 	const cachedImagesAsync = (): Promise<any> => {
-		const images = [require('./assets/images/marker.png')];
+		const images = [require('./assets/images/currentLocation.png'), require('./assets/images/carry_out.png'), require('./assets/images/dine_in.png')];
 		//require('./assets/appLogo.png')
 		const cacheImages = images.map((image) => {
 			return Asset.fromModule(image).downloadAsync();

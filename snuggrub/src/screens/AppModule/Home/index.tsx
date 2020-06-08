@@ -75,13 +75,12 @@ const MyMarker = () => {
 		longitude: locationResults.data.coords.longitude,
 		latitude: locationResults.data.coords.latitude,
 		}}
-		// image={require('../../../../assets/images/marker.png')}
-		// style={{height : 10, width : 2}}
+
 		title='My Location'
 	>
 		<Image
-			source={require('../../../../assets/images/marker.png')}
-		style={{height : 35, width : 35}}
+			source={require('../../../../assets/images/currentLocation.png')}
+		style={{height : 25, width : 25}}
 		resizeMode='contain'
 		/>
 	</Marker>
@@ -93,7 +92,7 @@ const MyMarker = () => {
 	return (
 		<React.Fragment>
 			<Surface style={styles.surface}>
-				<MapView style={StyleSheet.absoluteFillObject} initialRegion={region()}>
+				<MapView style={StyleSheet.absoluteFillObject} initialRegion={region()} mapType='standard'>
 					<MyMarker />
 					<MapPoints places={places} />
 				</MapView>
