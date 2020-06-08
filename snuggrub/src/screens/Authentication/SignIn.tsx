@@ -72,6 +72,7 @@ export const SignIn = () => {
 	return (
 		<AuthLayout>
 			<SignInHeader />
+			
 			<View style={{ flex: 4 }}>
 				<TextInput
 					label='Email'
