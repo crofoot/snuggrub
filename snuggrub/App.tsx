@@ -26,6 +26,16 @@ initializeApp(firebaseConfig);
 let customFonts = {
 	// PlayfairDisplayItalic: require('./assets/fonts/Playfair-Display/PlayfairDisplayItalic.ttf'),
 	PlayfairDisplay: require('./assets/Fonts/Playfair-Display/PlayfairDisplay.ttf'),
+	ArcherusGrotesque: require('./assets/Fonts/ArcherusGrotesque/acherusgrotesque.otf'),
+	RobotoRegular: require('./assets/Fonts/Roboto/Roboto-Regular.ttf'),
+	RobotoBold: require('./assets/Fonts/Roboto/Roboto-Bold.ttf'),
+	RobotoItalic: require('./assets/Fonts/Roboto/Roboto-Italic.ttf'),
+	RobotoLight: require('./assets/Fonts/Roboto/Roboto-Light.ttf'),
+	OpenSans: require('./assets/Fonts/OpenSans/OpenSans-Regular.ttf'),
+	OpenSansBold: require('./assets/Fonts/OpenSans/OpenSans-Bold.ttf'),
+	OpenSansExtraBold: require('./assets/Fonts/OpenSans/OpenSans-ExtraBold.ttf'),
+	OpenSansLight: require('./assets/Fonts/OpenSans/OpenSans-Light.ttf'),
+	OpenSansSemiBold: require('./assets/Fonts/OpenSans/OpenSans-SemiBold.ttf'),
 };
 
 export default function App() {

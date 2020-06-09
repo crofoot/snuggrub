@@ -14,18 +14,24 @@ export const CardItem = (props: Props) => {
 	return (
 		<Card
 			style={{
-				width: Dimensions.get('screen').width * 0.5,
+				width: Dimensions.get('screen').width * 0.45,
 				marginHorizontal: 5,
 				flex: 1,
+				borderRadius: 15,
+				overflow: 'hidden',
 			}}>
 			<Card.Cover
 				source={{
 					uri: imageUri(item),
 				}}
+				style={{
+					borderRadius: 50,
+				}}
 			/>
 			<LinearGradient
-				colors={['transparent', 'rgba(0,0,0,1)']}
-				start={[0.5, 0.2]}
+				colors={['transparent', 'rgba(0,0,0,0.8)']}
+				start={[0.5, 0.4]}
+				end={[0.5, 0.6]}
 				style={{
 					position: 'absolute',
 					left: 0,
@@ -39,11 +45,12 @@ export const CardItem = (props: Props) => {
 				style={{
 					position: 'absolute',
 					bottom: 0,
-					color: 'red',
-					// fontFamily: 'PlayfairDisplay-Italic',
+					color: 'white',
+					paddingLeft: 5,
+					fontSize: 13,
+					fontFamily: 'OpenSansSemiBold',
 				}}>
-				{' '}
-				Test{' '}
+				{props.item.name}
 			</Title>
 			{/* <Card.Content style={{ backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
 			</Card.Content> */}
