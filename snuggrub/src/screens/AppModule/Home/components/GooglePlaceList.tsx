@@ -5,9 +5,9 @@ import { GooglePlace } from 'models/GooglePlace';
 import { RequestError } from 'react-promise-hooks';
 
 // components
-import { FlatList, Dimensions } from 'react-native';
-import { Card, Title } from 'react-native-paper';
-import { GOOGLE_API_KEY } from 'utils/apiKey';
+import { CardItem } from './CardItem';
+import { FlatList } from 'react-native';
+import { Title } from 'react-native-paper';
 
 interface Props {
 	placeResults: {
@@ -18,16 +18,6 @@ interface Props {
 	};
 }
 export const GooglePlaceList = (props: Props) => {
-	const imageUri = (item: GooglePlace) => {
-		try {
-			return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${200}&photoreference=${
-				item.photos[0].photo_reference
-			}&key=${GOOGLE_API_KEY}`;
-		} catch (error) {
-			return null;
-		}
-	};
-
 	if (props.placeResults.loading) {
 		return <Title>Loading</Title>;
 	}
@@ -38,16 +28,7 @@ export const GooglePlaceList = (props: Props) => {
 			data={props.placeResults.data}
 			keyExtractor={(item) => item.id}
 			renderItem={({ item }) => {
-				return (
-					<Card style={{ height: '40%', width: Dimensions.get('screen').width * 0.5, marginHorizontal: 5 }}>
-						<Card.Cover
-							source={{
-								uri: imageUri(item),
-							}}
-						/>
-						<Card.Title title={item.name} />
-					</Card>
-				);
+				return <CardItem item={item} />;
 			}}
 		/>
 	);

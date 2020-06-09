@@ -66,37 +66,39 @@ export const HomeScreen = () => {
 		}
 	};
 
+	const MyMarker = () => {
+		if (locationResults.data) {
+			return (
+				<Marker
+					key='my-location-key'
+					coordinate={{
+						longitude: locationResults.data.coords.longitude,
+						latitude: locationResults.data.coords.latitude,
+					}}
+					title='My Location'>
+					<Image
+						source={require('../../../../assets/images/currentLocation.png')}
+						style={{ height: 25, width: 25 }}
+						resizeMode='contain'
+					/>
+				</Marker>
+			);
+		} else {
+			return null;
+		}
+	};
 
-const MyMarker = () => {
-	if(locationResults.data){
-	return <Marker
-		key='my-location-key'
-		coordinate={{
-		longitude: locationResults.data.coords.longitude,
-		latitude: locationResults.data.coords.latitude,
-		}}
-
-		title='My Location'
-	>
-		<Image
-			source={require('../../../../assets/images/currentLocation.png')}
-		style={{height : 25, width : 25}}
-		resizeMode='contain'
-		/>
-	</Marker>
-	} else {
-		return null
-	}
-}
-	
 	return (
 		<React.Fragment>
 			<Surface style={styles.surface}>
-				<MapView style={StyleSheet.absoluteFillObject} initialRegion={region()} mapType='standard'>
+				<MapView
+					style={StyleSheet.absoluteFillObject}
+					initialRegion={region()}
+					mapType='standard'>
 					<MyMarker />
 					<MapPoints places={places} />
 				</MapView>
-				<SafeAreaView>
+				<SafeAreaView style={{ flex: 1 }}>
 					<Searchbar
 						icon='menu'
 						value={search}
@@ -107,16 +109,20 @@ const MyMarker = () => {
 						onChangeText={setSearch}
 						// onFocus={openSearchModal}
 					/>
+					<LocationResults
+						locationResults={locationResults}
+						setPlaces={setPlaces}
+					/>
 				</SafeAreaView>
 			</Surface>
 			<SearchModal visible={isSearchModalVisible} onClose={closeSearchModal} />
-			<BottomSheet
+			{/* <BottomSheet
 				ref={sheetRef}
 				initialSnap={0}
 				renderHeader={() => <BottomSheetHeader theme={theme} />}
 				snapPoints={['25%', '50%', '80%']}
 				renderContent={() => <LocationResults locationResults={locationResults} setPlaces={setPlaces} />}
-			/>
+			/> */}
 		</React.Fragment>
 	);
 };

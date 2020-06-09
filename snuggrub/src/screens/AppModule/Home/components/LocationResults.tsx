@@ -12,7 +12,13 @@ import { RequestError, useLazyPromise } from 'react-promise-hooks';
 import { View } from 'react-native';
 import { Loader } from 'components/Loader';
 import { GooglePlaceList } from './GooglePlaceList';
-import { Button, Surface, Headline, Subheading, useTheme } from 'react-native-paper';
+import {
+	Button,
+	Surface,
+	Headline,
+	Subheading,
+	useTheme,
+} from 'react-native-paper';
 
 interface Props {
 	locationResults: {
@@ -26,7 +32,10 @@ interface Props {
 
 export const LocationResults = (props: Props) => {
 	const theme = useTheme();
-	const [nearbyFetch, nearbyResults] = useLazyPromise<GooglePlace[], SearchResturantDto>(SearchService.getNearByPlaces);
+	const [nearbyFetch, nearbyResults] = useLazyPromise<
+		GooglePlace[],
+		SearchResturantDto
+	>(SearchService.getNearByPlaces);
 
 	const handleFetch = () => {
 		nearbyFetch({
@@ -49,19 +58,41 @@ export const LocationResults = (props: Props) => {
 		);
 
 	return (
-		<View style={{ height: '100%', backgroundColor: theme.colors.background }}>
-			<View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10 }}>
-				<Button uppercase={false} mode='contained' onPress={handleFetch}>
-					<Subheading>Nearby</Subheading>
-				</Button>
-				<Button uppercase={false} mode='contained' color={theme.colors.onSurface} onPress={handleFetch}>
-					<Subheading>ReLocate</Subheading>
-				</Button>
-				<Button uppercase={false} mode='contained' color={theme.colors.onSurface} onPress={handleFetch}>
-					<Subheading>Nearby</Subheading>
-				</Button>
+		<View
+			style={{
+				// height: '30%',
+				// alignItems: 'flex-end',
+				justifyContent: 'flex-end',
+				flex: 1,
+				backgroundColor: 'transparent',
+			}}>
+			<Button
+				uppercase={false}
+				mode='contained'
+				onPress={handleFetch}
+				style={{ width: '30%' }}>
+				<Subheading>Nearby</Subheading>
+			</Button>
+			<View>
+				<GooglePlaceList placeResults={nearbyResults} />
 			</View>
-			<GooglePlaceList placeResults={nearbyResults} />
 		</View>
 	);
+
+	// return (
+	// 	<View style={{ height: '100%', backgroundColor: theme.colors.background }}>
+	// 		<View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10 }}>
+	// 			<Button uppercase={false} mode='contained' onPress={handleFetch}>
+	// 				<Subheading>Nearby</Subheading>
+	// 			</Button>
+	// 			<Button uppercase={false} mode='contained' color={theme.colors.onSurface} onPress={handleFetch}>
+	// 				<Subheading>ReLocate</Subheading>
+	// 			</Button>
+	// 			<Button uppercase={false} mode='contained' color={theme.colors.onSurface} onPress={handleFetch}>
+	// 				<Subheading>Nearby</Subheading>
+	// 			</Button>
+	// 		</View>
+	// 		<GooglePlaceList placeResults={nearbyResults} />
+	// 	</View>
+	// );
 };
