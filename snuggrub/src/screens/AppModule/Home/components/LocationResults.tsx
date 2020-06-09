@@ -50,6 +50,13 @@ export const LocationResults = (props: Props) => {
 		}
 	}, [nearbyResults.done]);
 
+	React.useEffect(() => {
+		if (!props.locationResults.loading) {
+			console.log('here');
+			handleFetch();
+		}
+	}, [props.locationResults.loading]);
+
 	if (props.locationResults.loading)
 		return (
 			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -58,26 +65,31 @@ export const LocationResults = (props: Props) => {
 		);
 
 	return (
-		<View
-			style={{
-				// height: '30%',
-				// alignItems: 'flex-end',
-				justifyContent: 'flex-end',
-				flex: 1,
-				backgroundColor: 'transparent',
-			}}>
-			<Button
-				uppercase={false}
-				mode='contained'
-				onPress={handleFetch}
-				style={{ width: '30%' }}>
-				<Subheading>Nearby</Subheading>
-			</Button>
-			<View>
-				<GooglePlaceList placeResults={nearbyResults} />
-			</View>
-		</View>
+		<GooglePlaceList
+			placeResults={nearbyResults}
+			location={props.locationResults.data}
+		/>
 	);
+
+	// return (
+	// 	// <View
+	// 	// 	style={{
+	// 	// 		// // height: '30%',
+	// 	// 		// // alignItems: 'flex-end',
+	// 	// 		// justifyContent: 'flex-end',
+	// 	// 		flex: 1,
+	// 	// 		// bottom: 40,
+	// 	// 		// position: 'absolute',
+	// 	// 		backgroundColor: 'transparent',
+	// 	// 	}}>
+	// 	// 	<View>
+	// 			<GooglePlaceList
+	// 				placeResults={nearbyResults}
+	// 				location={props.locationResults.data}
+	// 			/>
+	// 		</View>
+	// 	// </View>
+	// );
 
 	// return (
 	// 	<View style={{ height: '100%', backgroundColor: theme.colors.background }}>

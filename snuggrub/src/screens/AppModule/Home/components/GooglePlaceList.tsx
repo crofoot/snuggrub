@@ -8,8 +8,11 @@ import { RequestError } from 'react-promise-hooks';
 import { CardItem } from './CardItem';
 import { FlatList } from 'react-native';
 import { Title } from 'react-native-paper';
+import { LocationData } from 'expo-location';
+import { Loader } from 'components/Loader';
 
 interface Props {
+	location: LocationData;
 	placeResults: {
 		loading: boolean;
 		done: boolean;
@@ -19,16 +22,18 @@ interface Props {
 }
 export const GooglePlaceList = (props: Props) => {
 	if (props.placeResults.loading) {
-		return <Title>Loading</Title>;
+		return <Loader />;
 	}
 
 	return (
 		<FlatList
+			style={{ position: 'absolute', bottom: 50 }}
 			horizontal={true}
+			showsHorizontalScrollIndicator={false}
 			data={props.placeResults.data}
 			keyExtractor={(item) => item.id}
 			renderItem={({ item }) => {
-				return <CardItem item={item} />;
+				return <CardItem item={item} location={props.location} />;
 			}}
 		/>
 	);

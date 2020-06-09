@@ -16,7 +16,13 @@ import { SearchModal } from './components/SearchModal';
 import { Surface, Searchbar, useTheme } from 'react-native-paper';
 import { BottomSheetHeader } from 'components/BottomSheet';
 import { LocationResults } from './components/LocationResults';
-import { SafeAreaView, StyleSheet, Keyboard, Image } from 'react-native';
+import {
+	SafeAreaView,
+	StyleSheet,
+	Keyboard,
+	Image,
+	Dimensions,
+} from 'react-native';
 
 export const HomeScreen = () => {
 	const theme = useTheme();
@@ -92,13 +98,15 @@ export const HomeScreen = () => {
 		<React.Fragment>
 			<Surface style={styles.surface}>
 				<MapView
-					style={StyleSheet.absoluteFillObject}
+					style={{
+						...StyleSheet.absoluteFillObject,
+					}}
 					initialRegion={region()}
 					mapType='standard'>
 					<MyMarker />
 					<MapPoints places={places} />
 				</MapView>
-				<SafeAreaView style={{ flex: 1 }}>
+				<SafeAreaView>
 					<Searchbar
 						icon='menu'
 						value={search}
@@ -109,11 +117,11 @@ export const HomeScreen = () => {
 						onChangeText={setSearch}
 						// onFocus={openSearchModal}
 					/>
-					<LocationResults
-						locationResults={locationResults}
-						setPlaces={setPlaces}
-					/>
 				</SafeAreaView>
+				<LocationResults
+					locationResults={locationResults}
+					setPlaces={setPlaces}
+				/>
 			</Surface>
 			<SearchModal visible={isSearchModalVisible} onClose={closeSearchModal} />
 			{/* <BottomSheet
