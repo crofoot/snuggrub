@@ -27,6 +27,7 @@ import {
 export const HomeScreen = () => {
 	const theme = useTheme();
 	// Screen State
+	const [selectedPlaceId, setSelectedPlaceId] = React.useState(null);
 	const [search, setSearch] = React.useState('');
 	const [places, setPlaces] = React.useState<GooglePlace[]>([]);
 	//const [coordinates, setCoordinates] = React.useState<Coordinates>();
@@ -36,17 +37,6 @@ export const HomeScreen = () => {
 	const searchRef = React.useRef();
 	const navigation = useNavigation();
 	const locationResults = usePromise<LocationData>(LocationService.getLocation);
-
-	// React.useEffect(() => {
-	// 	if (!locationResults.loading) {
-	// 		if (!locationResults.error.occurred && locationResults.data) {
-	// 			setCoordinates({
-	// 				latitude: locationResults.data.coords.latitude,
-	// 				longitude: locationResults.data.coords.longitude,
-	// 			});
-	// 		}
-	// 	}
-	// }, [locationResults]);
 
 	const openSearchModal = () => {
 		setIsSearchModalVisible(true);
@@ -104,7 +94,7 @@ export const HomeScreen = () => {
 					initialRegion={region()}
 					mapType='standard'>
 					<MyMarker />
-					<MapPoints places={places} />
+					<MapPoints places={places} onPress={setSelectedPlaceId} />
 				</MapView>
 				<SafeAreaView>
 					<Searchbar
@@ -119,8 +109,9 @@ export const HomeScreen = () => {
 					/>
 				</SafeAreaView>
 				<LocationResults
-					locationResults={locationResults}
 					setPlaces={setPlaces}
+					selectedPlaceId={selectedPlaceId}
+					locationResults={locationResults}
 				/>
 			</Surface>
 			<SearchModal visible={isSearchModalVisible} onClose={closeSearchModal} />

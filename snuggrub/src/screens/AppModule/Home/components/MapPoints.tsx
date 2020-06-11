@@ -5,6 +5,7 @@ import { Image } from 'react-native';
 
 interface Props {
 	places: GooglePlace[];
+	onPress: (id: string) => void;
 }
 
 export const MapPoints = (props: Props) => {
@@ -13,6 +14,7 @@ export const MapPoints = (props: Props) => {
 			{props.places.map((place) => {
 				return (
 					<Marker
+						onPress={() => props.onPress(place.id)}
 						key={place.id}
 						coordinate={{
 							longitude: place.geometry.location.lng,

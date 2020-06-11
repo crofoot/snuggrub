@@ -1,23 +1,41 @@
 import React from 'react';
-import { Card, Title } from 'react-native-paper';
-import { Dimensions, Image, View } from 'react-native';
+import { LocationData } from 'expo-location';
 import { GOOGLE_API_KEY } from 'utils/apiKey';
 import { GooglePlace } from 'models/GooglePlace';
-import { LinearGradient } from 'expo-linear-gradient';
-import { LocationData } from 'expo-location';
 import { getDistance, getPreciseDistance } from 'geolib';
 
+import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
+import { Dimensions, Image, View } from 'react-native';
+import { Card, Title, TouchableRipple } from 'react-native-paper';
+
 interface Props {
-	location: LocationData;
 	item: GooglePlace;
+	isFocused: boolean;
+	onFocus: () => void;
+	location: LocationData;
 }
 
 const METER_TO_MILE_RATIO: number = 0.000621371;
 
+const zoomOut = {
+	0: {
+		opacity: 1,
+		scale: 1,
+	},
+	0.5: {
+		opacity: 1,
+		scale: 0.3,
+	},
+	1: {
+		opacity: 0,
+		scale: 0,
+	},
+};
+
 export const CardItem = (props: Props) => {
 	const { item, location } = props;
 	//current location
-	// console.log(location.coords.latitude, location.coords.longitude);
 
 	const displayDistance = () => {
 		let distanceInMeters = getPreciseDistance(
@@ -36,75 +54,94 @@ export const CardItem = (props: Props) => {
 		return `${miles.toFixed(2)}mi, `;
 	};
 	return (
-		<Card
+		<TouchableRipple
+			onPress={props.onFocus}
 			style={{
-				width: Dimensions.get('screen').width * 0.4,
-				height: Dimensions.get('screen').width * 0.5,
-				marginHorizontal: 5,
 				borderRadius: 15,
-				overflow: 'hidden',
+				marginHorizontal: 5,
+				justifyContent: 'flex-end',
 			}}>
-			<Card.Cover
-				source={{
-					uri: imageUri(item),
-				}}
+			<Animatable.View
+				transition='height'
+				direction='alternate'
+				// transition='height'
+				//	animation={props.isFocused ? 'bounceInUp' : 'bounceInDown'}
 				style={{
-					borderRadius: 50,
-				}}
-			/>
-			<LinearGradient
-				colors={['transparent', 'rgba(0,0,0,0.8)']}
-				start={[0.5, 0.4]}
-				end={[0.5, 0.6]}
-				style={{
-					position: 'absolute',
-					left: 0,
-					right: 0,
-					top: 0,
-					height: 300,
-				}}
-			/>
+					width: Dimensions.get('screen').width * 0.4,
+					height: props.isFocused
+						? Dimensions.get('screen').height * 0.3
+						: Dimensions.get('screen').height * 0.25,
+					borderRadius: 15,
+					overflow: 'hidden',
+				}}>
+				<Card style={{}}>
+					<Card.Cover
+						source={{
+							uri: imageUri(item),
+						}}
+						style={{
+							borderRadius: 50,
+							width: Dimensions.get('screen').width * 0.4,
+							height: props.isFocused
+								? Dimensions.get('screen').height * 0.3
+								: Dimensions.get('screen').height * 0.25,
+						}}
+					/>
+					<LinearGradient
+						colors={['transparent', 'rgba(0,0,0,0.8)']}
+						start={[0.5, 0.4]}
+						end={[0.5, 0.6]}
+						style={{
+							position: 'absolute',
+							left: 0,
+							right: 0,
+							top: 0,
+							height: 300,
+						}}
+					/>
 
-			<Title
-				style={{
-					position: 'absolute',
-					bottom: 15,
-					color: 'white',
-					paddingLeft: 5,
-					fontSize: 13,
-					fontFamily: 'OpenSansSemiBold',
-				}}>
-				{props.item.name}
-			</Title>
-			<View
-				style={{
-					position: 'absolute',
-					bottom: 0,
-					flexDirection: 'row',
-					alignItems: 'center',
-				}}>
-				<Title
-					style={{
-						// position: 'absolute',
-						// bottom: 0,
-						color: 'white',
-						paddingHorizontal: 2,
-						fontSize: 11,
-						fontFamily: 'OpenSansLight',
-					}}>
-					{displayDistance()}
-					{props.item.rating}
-				</Title>
-				<Image
-					source={require('../../../../../assets/images/star.png')}
-					style={{
-						height: 13,
-						width: 13,
-					}}
-					resizeMode='contain'
-				/>
-			</View>
-		</Card>
+					<Title
+						style={{
+							position: 'absolute',
+							bottom: 15,
+							color: 'white',
+							paddingLeft: 5,
+							fontSize: 13,
+							fontFamily: 'OpenSansSemiBold',
+						}}>
+						{props.item.name}
+					</Title>
+					<View
+						style={{
+							position: 'absolute',
+							bottom: 0,
+							flexDirection: 'row',
+							alignItems: 'center',
+						}}>
+						<Title
+							style={{
+								// position: 'absolute',
+								// bottom: 0,
+								color: 'white',
+								paddingHorizontal: 2,
+								fontSize: 11,
+								fontFamily: 'OpenSansLight',
+							}}>
+							{displayDistance()}
+							{props.item.rating}
+						</Title>
+						<Image
+							source={require('../../../../../assets/images/star.png')}
+							style={{
+								height: 13,
+								width: 13,
+							}}
+							resizeMode='contain'
+						/>
+					</View>
+				</Card>
+			</Animatable.View>
+		</TouchableRipple>
 	);
 };
 

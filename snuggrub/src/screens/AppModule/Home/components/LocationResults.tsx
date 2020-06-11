@@ -21,6 +21,7 @@ import {
 } from 'react-native-paper';
 
 interface Props {
+	selectedPlaceId: string;
 	locationResults: {
 		loading: boolean;
 		error: RequestError;
@@ -52,7 +53,6 @@ export const LocationResults = (props: Props) => {
 
 	React.useEffect(() => {
 		if (!props.locationResults.loading) {
-			console.log('here');
 			handleFetch();
 		}
 	}, [props.locationResults.loading]);
@@ -66,6 +66,7 @@ export const LocationResults = (props: Props) => {
 
 	return (
 		<GooglePlaceList
+			selectedPlaceId={props.selectedPlaceId}
 			placeResults={nearbyResults}
 			location={props.locationResults.data}
 		/>
