@@ -91,6 +91,11 @@ export const HomeScreen = () => {
 					style={{
 						...StyleSheet.absoluteFillObject,
 					}}
+					onPress={(e) => {
+						if (e.target === 599) {
+							setSelectedPlaceId(null);
+						}
+					}}
 					initialRegion={region()}
 					mapType='standard'>
 					<MyMarker />
