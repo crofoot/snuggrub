@@ -1,8 +1,17 @@
 import React from 'react';
 import { GooglePlace } from 'models/GooglePlace';
-import { Surface, Headline, useTheme } from 'react-native-paper';
+import {
+	Surface,
+	Headline,
+	useTheme,
+	Subheading,
+	Paragraph,
+	Divider,
+} from 'react-native-paper';
 import { Loader } from 'components/Loader';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import { Stars } from './Stars';
+import { PriceRate } from './PriceRate';
 
 interface Props {
 	place: GooglePlace;
@@ -26,7 +35,55 @@ export const SheetPlace = (props: Props) => {
 				height: '100%',
 				backgroundColor: theme.colors.background,
 			}}>
-			<Headline>{place.name}</Headline>
+			<View style={{ paddingLeft: 7 }}>
+				<Headline style={{ paddingLeft: 4 }}>{place.name}</Headline>
+				<View style={{ flexDirection: 'row', height: 17 }}>
+					<Stars rating={place.rating} />
+					<Paragraph
+						style={{
+							fontSize: 15,
+							fontFamily: 'RalewayRegular',
+							height: 18,
+						}}>
+						{place.user_ratings_total} Reviews
+					</Paragraph>
+				</View>
+				<View style={{ paddingLeft: 5 }}>
+					<View
+						style={{
+							flexDirection: 'row',
+							height: 25,
+						}}>
+						<PriceRate rate={place.price_level} />
+						<Subheading
+							style={{
+								fontFamily: 'OpenSans',
+							}}>
+							{place.types[0]}
+						</Subheading>
+					</View>
+					<Subheading style={{ fontFamily: 'OpenSans', height: 21 }}>
+						{place.vicinity}
+					</Subheading>
+					<Subheading
+						style={{
+							color: place.opening_hours.open_now ? '#8fbfa2' : '#c27a7a',
+							fontFamily: 'OpenSans',
+							height: 40,
+						}}>
+						{place.opening_hours.open_now ? 'Open' : 'Closed'}
+						<Text style={{ color: '#404040', fontSize: 15 }}> 9am - 4pm</Text>
+					</Subheading>
+				</View>
+			</View>
+			<Divider
+				style={{
+					// backgroundColor: '#9fb5a8',
+					backgroundColor: '#c5d9ce',
+					marginHorizontal: 15,
+					height: 1.2,
+				}}
+			/>
 		</View>
 	);
 };

@@ -36,6 +36,9 @@ let customFonts = {
 	OpenSansExtraBold: require('./assets/Fonts/OpenSans/OpenSans-ExtraBold.ttf'),
 	OpenSansLight: require('./assets/Fonts/OpenSans/OpenSans-Light.ttf'),
 	OpenSansSemiBold: require('./assets/Fonts/OpenSans/OpenSans-SemiBold.ttf'),
+	RalewayRegular: require('./assets/Fonts/Raleway/Raleway-Regular.ttf'),
+	RalewayLight: require('./assets/Fonts/Raleway/Raleway-Light.ttf'),
+	RalewayBold: require('./assets/Fonts/Raleway/Raleway-Bold.ttf'),
 };
 
 export default function App() {
