@@ -58,7 +58,7 @@ export const CardItem = (props: Props) => {
 		<TouchableRipple
 			onPress={props.onFocus}
 			style={{
-				shadowOpacity: 0.12,
+				shadowOpacity: 0.2,
 				borderRadius: 15,
 				marginHorizontal: 5,
 				justifyContent: 'flex-end',
@@ -92,8 +92,10 @@ export const CardItem = (props: Props) => {
 							'transparent',
 							props.isFocused ? 'rgba(51,102,102,0.8)' : 'rgba(0,0,0,0.8)',
 						]}
-						start={[0.5, 0.4]}
-						end={[0.5, 0.6]}
+						start={[0.5, props.isFocused ? 0.55 : 0.4]}
+						// start={[0.5, 0.4]}
+						// end={[0.5, 0.6]}
+						end={[0.5, props.isFocused ? 0.7 : 0.6]}
 						style={{
 							position: 'absolute',
 							left: 0,
