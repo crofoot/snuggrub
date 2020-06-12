@@ -8,6 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import { Dimensions, Image, View } from 'react-native';
 import { Card, Title, TouchableRipple } from 'react-native-paper';
+import { blue100 } from 'react-native-paper/lib/typescript/src/styles/colors';
 
 interface Props {
 	item: GooglePlace;
@@ -57,6 +58,7 @@ export const CardItem = (props: Props) => {
 		<TouchableRipple
 			onPress={props.onFocus}
 			style={{
+				shadowOpacity: 0.12,
 				borderRadius: 15,
 				marginHorizontal: 5,
 				justifyContent: 'flex-end',
@@ -64,14 +66,13 @@ export const CardItem = (props: Props) => {
 			<Animatable.View
 				transition='height'
 				direction='alternate'
-				// transition='height'
-				//	animation={props.isFocused ? 'bounceInUp' : 'bounceInDown'}
 				style={{
 					width: Dimensions.get('screen').width * 0.4,
 					height: props.isFocused
 						? Dimensions.get('screen').height * 0.3
 						: Dimensions.get('screen').height * 0.25,
 					borderRadius: 15,
+					backgroundColor: 'blue',
 					overflow: 'hidden',
 				}}>
 				<Card style={{}}>
@@ -80,7 +81,6 @@ export const CardItem = (props: Props) => {
 							uri: imageUri(item),
 						}}
 						style={{
-							borderRadius: 50,
 							width: Dimensions.get('screen').width * 0.4,
 							height: props.isFocused
 								? Dimensions.get('screen').height * 0.3
@@ -88,7 +88,10 @@ export const CardItem = (props: Props) => {
 						}}
 					/>
 					<LinearGradient
-						colors={['transparent', 'rgba(0,0,0,0.8)']}
+						colors={[
+							'transparent',
+							props.isFocused ? 'rgba(51,102,102,0.8)' : 'rgba(0,0,0,0.8)',
+						]}
 						start={[0.5, 0.4]}
 						end={[0.5, 0.6]}
 						style={{
@@ -108,6 +111,8 @@ export const CardItem = (props: Props) => {
 							paddingLeft: 5,
 							fontSize: 13,
 							fontFamily: 'OpenSansSemiBold',
+							lineHeight: 15,
+							paddingBottom: 7,
 						}}>
 						{props.item.name}
 					</Title>
@@ -126,6 +131,7 @@ export const CardItem = (props: Props) => {
 								paddingHorizontal: 2,
 								fontSize: 11,
 								fontFamily: 'OpenSansLight',
+								paddingLeft: 6,
 							}}>
 							{displayDistance()}
 							{props.item.rating}
