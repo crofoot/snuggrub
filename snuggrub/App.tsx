@@ -49,6 +49,7 @@ export default function App() {
 			require('./assets/images/currentLocation.png'),
 			require('./assets/images/carry_out.png'),
 			require('./assets/images/carry_out_inactive.png'),
+			require('./assets/images/carry_out_tab.png'),
 			require('./assets/images/dine_in.png'),
 			require('./assets/images/star.png'),
 			require('./assets/images/Delivery.png'),

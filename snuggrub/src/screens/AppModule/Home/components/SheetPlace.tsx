@@ -84,12 +84,35 @@ export const SheetPlace = (props: Props) => {
 					height: 1.2,
 				}}
 			/>
-
-			<Image
-				source={require('../../../../../assets/images/dine_out.png')}
-				style={{ height: 25, width: 25 }}
-				resizeMode='contain'
-			/>
+			<View
+				style={{
+					flexDirection: 'row',
+					paddingTop: 10,
+					justifyContent: 'space-around',
+					paddingLeft: 8,
+					paddingRight: 8,
+				}}>
+				<Image
+					source={require('../../../../../assets/images/dine_out.png')}
+					style={{ height: 60, width: 60 }}
+					resizeMode='contain'
+				/>
+				<Image
+					source={require('../../../../../assets/images/dine_in_table.png')}
+					style={{ height: 60, width: 60 }}
+					resizeMode='contain'
+				/>
+				<Image
+					source={require('../../../../../assets/images/Delivery.png')}
+					style={{ height: 60, width: 60 }}
+					resizeMode='contain'
+				/>
+				<Image
+					source={require('../../../../../assets/images/carry_out_tab.png')}
+					style={{ height: 60, width: 60 }}
+					resizeMode='contain'
+				/>
+			</View>
 		</View>
 	);
 };
