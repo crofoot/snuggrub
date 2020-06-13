@@ -9,7 +9,7 @@ import {
 	Divider,
 } from 'react-native-paper';
 import { Loader } from 'components/Loader';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Stars } from './Stars';
 import { PriceRate } from './PriceRate';
 
@@ -83,6 +83,12 @@ export const SheetPlace = (props: Props) => {
 					marginHorizontal: 15,
 					height: 1.2,
 				}}
+			/>
+
+			<Image
+				source={require('../../../../../assets/images/dine_out.png')}
+				style={{ height: 25, width: 25 }}
+				resizeMode='contain'
 			/>
 		</View>
 	);

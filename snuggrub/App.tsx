@@ -48,8 +48,15 @@ export default function App() {
 		const images = [
 			require('./assets/images/currentLocation.png'),
 			require('./assets/images/carry_out.png'),
+			require('./assets/images/carry_out_inactive.png'),
 			require('./assets/images/dine_in.png'),
 			require('./assets/images/star.png'),
+			require('./assets/images/Delivery.png'),
+			require('./assets/images/Delivery_inactive.png'),
+			require('./assets/images/dine_in_table.png'),
+			require('./assets/images/dine_in_table_inactive.png'),
+			require('./assets/images/dine_out.png'),
+			require('./assets/images/dine_out_inactive.png'),
 		];
 		//require('./assets/appLogo.png')
 		const cacheImages = images.map((image) => {
