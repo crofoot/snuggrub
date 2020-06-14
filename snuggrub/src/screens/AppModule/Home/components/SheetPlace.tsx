@@ -91,6 +91,7 @@ export const SheetPlace = (props: Props) => {
 					justifyContent: 'space-around',
 					paddingLeft: 8,
 					paddingRight: 8,
+					paddingBottom: 10,
 				}}>
 				<Image
 					source={require('../../../../../assets/images/dine_out.png')}
@@ -113,6 +114,15 @@ export const SheetPlace = (props: Props) => {
 					resizeMode='contain'
 				/>
 			</View>
+
+			<Divider
+				style={{
+					// backgroundColor: '#9fb5a8',
+					backgroundColor: '#c5d9ce',
+					marginHorizontal: 15,
+					height: 1.2,
+				}}
+			/>
 		</View>
 	);
 };
