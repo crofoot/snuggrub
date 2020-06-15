@@ -7,11 +7,17 @@ import {
 	Subheading,
 	Paragraph,
 	Divider,
+	Title,
+	Card,
+	Chip,
+	Button,
 } from 'react-native-paper';
 import { Loader } from 'components/Loader';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, FlatList, Dimensions } from 'react-native';
 import { Stars } from './Stars';
 import { PriceRate } from './PriceRate';
+import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
 	place: GooglePlace;
@@ -19,6 +25,7 @@ interface Props {
 
 export const SheetPlace = (props: Props) => {
 	const theme = useTheme();
+	const [menuItem, setMenuItem] = React.useState(0);
 	const { place } = props;
 	if (place === null) {
 		return (
@@ -123,6 +130,60 @@ export const SheetPlace = (props: Props) => {
 					height: 1.2,
 				}}
 			/>
+			<TouchableOpacity></TouchableOpacity>
+			<View style={{ flex: 1, marginTop: 6 }}>
+				<FlatList
+					horizontal
+					data={['dine-out', 'dine-in', 'delivery', 'pickup']}
+					keyExtractor={(item) => item}
+					showsHorizontalScrollIndicator={false}
+					renderItem={({ item, index }) => (
+						<Chip
+							textStyle={{ color: 'black', fontSize: 13 }}
+							selectedColor='#9fb5a8'
+							onPress={() => setMenuItem(index)}
+							mode='outlined'
+							style={{
+								backgroundColor: 'white',
+								marginHorizontal: 10,
+								height: 35,
+								// width: 90,
+								// marginHorizontal: 10,
+							}}>
+							<Text>{item}</Text>
+						</Chip>
+					)}
+				/>
+			</View>
+			<View style={{ flex: 5, paddingLeft: 10 }}>
+				<Menu menuItem={menuItem} />
+			</View>
 		</View>
 	);
+};
+
+interface MenuProps {
+	menuItem: number;
+}
+// { menuItem }: { menuItem: number }
+const Menu = (props: MenuProps) => {
+	const { menuItem } = props;
+	switch (props.menuItem) {
+		case 0:
+			return (
+				<Text>
+					outdoor dining instructions outdoor dining instructions outdoor dining
+					instructions outdoor dining instructions outdoor dining instructions
+					outdoor dining instructions outdoor dining instructions outdoor dining
+					instructions outdoor dining instructions outdoor dining instructions
+					outdoor dining instructions
+				</Text>
+			);
+		case 1:
+			return <Text>indoor dining instructions</Text>;
+		case 2:
+			return <Text>delivery instructions</Text>;
+		case 3:
+			return <Text>pickup instructions</Text>;
+	}
 };
