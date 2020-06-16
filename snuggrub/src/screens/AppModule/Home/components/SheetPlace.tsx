@@ -20,6 +20,8 @@ import {
 	FlatList,
 	Dimensions,
 	StyleSheet,
+	SafeAreaView,
+	ScrollView,
 } from 'react-native';
 import { Stars } from './Stars';
 import { PriceRate } from './PriceRate';
@@ -114,7 +116,7 @@ export const SheetPlace = (props: Props) => {
 					resizeMode='contain'
 				/>
 				<Image
-					source={require('../../../../../assets/images/dine_in_table.png')}
+					source={require('../../../../../assets/images/dine_in_table_inactive.png')}
 					style={{ height: 60, width: 60 }}
 					resizeMode='contain'
 				/>
@@ -183,29 +185,58 @@ const Menu = (props: MenuProps) => {
 	const { menuItem } = props;
 	switch (props.menuItem) {
 		case 0:
-			return (
-				<View style={{ flexDirection: 'row' }}>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>
-						Outdoor dining available on patio and under tents
-					</Text>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>
-						Call to make reservation, may have a waitlist
-					</Text>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}> 18 tables available</Text>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}> parties of 9 max</Text>
-				</View>
-			);
+			return [
+				<SafeAreaView>
+					<ScrollView>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Outdoor dining available on patio (Weather permitted) and under
+								tents{'\n'}
+							</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Outdoor dining available on patio and under tents{'\n'}
+							</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Outdoor dining available on patio and under tents{'\n'}
+							</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Outdoor dining available on patio and under tents{'\n'}
+							</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Outdoor dining available on patio and under tents{'\n'}
+							</Text>
+						</View>
+					</ScrollView>
+				</SafeAreaView>,
+			];
 		case 1:
-			return (
+			return [
 				<View style={{ flexDirection: 'row' }}>
 					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>indoor dining instructions</Text>
-				</View>
-			);
+					<Text style={styles.closedFont}>INDOOR DINING NOT AVAILABLE</Text>
+				</View>,
+				<View style={{ flexDirection: 'row', paddingTop: 5 }}>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>
+						Indoor grocery market open Monday-Friday {'\n'}-open 9 am - whenever
+						we go out of stock{'\n'}
+						(Social distance practice and masks required to enter)
+					</Text>
+				</View>,
+			];
 		case 2:
 			return (
 				<View style={{ flexDirection: 'row' }}>
@@ -225,6 +256,12 @@ const Menu = (props: MenuProps) => {
 
 const styles = StyleSheet.create({
 	instructFont: {
+		paddingLeft: 5,
+		fontSize: 16,
+		fontFamily: 'RalewayRegular',
+	},
+	closedFont: {
+		color: '#c27a7a',
 		paddingLeft: 5,
 		fontSize: 16,
 		fontFamily: 'RalewayRegular',
