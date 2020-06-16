@@ -197,26 +197,25 @@ const Menu = (props: MenuProps) => {
 						</View>
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>12 tables available{'\n'}</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>Max party size of 6{'\n'}</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
-								Outdoor dining available on patio and under tents{'\n'}
+								Call to make reservation as a waitlist may form and opentable
+								won't be updated{'\n'}
 							</Text>
 						</View>
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
-								Outdoor dining available on patio and under tents{'\n'}
-							</Text>
-						</View>
-						<View style={{ flexDirection: 'row' }}>
-							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-							<Text style={styles.instructFont}>
-								Outdoor dining available on patio and under tents{'\n'}
-							</Text>
-						</View>
-						<View style={{ flexDirection: 'row' }}>
-							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-							<Text style={styles.instructFont}>
-								Outdoor dining available on patio and under tents{'\n'}
+								Only one person from table allowed at bar to order at a time(or
+								you may order from waiter)
+								{'\n'}
 							</Text>
 						</View>
 					</ScrollView>
@@ -226,31 +225,104 @@ const Menu = (props: MenuProps) => {
 			return [
 				<View style={{ flexDirection: 'row' }}>
 					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.closedFont}>INDOOR DINING NOT AVAILABLE</Text>
+					<Text style={styles.closedFont}>
+						INDOOR DINING NOT AVAILABLE{'\n'}
+					</Text>
 				</View>,
-				<View style={{ flexDirection: 'row', paddingTop: 5 }}>
+				<View style={{ flexDirection: 'row' }}>
 					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 					<Text style={styles.instructFont}>
 						Indoor grocery market open Monday-Friday {'\n'}-open 9 am - whenever
 						we go out of stock{'\n'}
+					</Text>
+				</View>,
+				<View style={{ flexDirection: 'row' }}>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>
 						(Social distance practice and masks required to enter)
 					</Text>
 				</View>,
 			];
 		case 2:
-			return (
-				<View style={{ flexDirection: 'row' }}>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>delivery instructions</Text>
-				</View>
-			);
+			return [
+				<SafeAreaView>
+					<ScrollView>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Delivery instructions{'\n'}
+							</Text>
+						</View>
+						,
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Order from our limited menu online or over phone {'\n'}
+							</Text>
+						</View>
+						,
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Select "Delivery" Online and enter address + time slot to be
+								delivered{'\n'}
+							</Text>
+						</View>
+						,
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Show proof of payment to driver through screen-door and be
+								cautious of touching + social distance guidelines
+								{'\n'}
+							</Text>
+						</View>
+					</ScrollView>
+				</SafeAreaView>,
+			];
 		case 3:
-			return (
-				<View style={{ flexDirection: 'row' }}>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>pickup instructions</Text>
-				</View>
-			);
+			return [
+				<SafeAreaView>
+					<ScrollView>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>Pickup instructions{'\n'}</Text>
+						</View>
+						,
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Order from our limited menu online or over phone {'\n'}
+							</Text>
+						</View>
+						,
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Select "Pickup" Online and pick a time slot to pick up order
+								{'\n'}
+							</Text>
+						</View>
+						,
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								Use side door of building to enter our pick-up area (to the left
+								of our main door - follow signs)
+								{'\n'}
+							</Text>
+						</View>
+						<View style={{ flexDirection: 'row' }}>
+							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+							<Text style={styles.instructFont}>
+								follow line-seperation markings on ground when waiting for
+								pickup inside and outside of building
+								{'\n'}
+							</Text>
+						</View>
+					</ScrollView>
+				</SafeAreaView>,
+			];
 	}
 };
 
