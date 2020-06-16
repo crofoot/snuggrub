@@ -41,6 +41,7 @@ export interface PlusCode {
 
 export interface GooglePlace {
 	business_status: string;
+	formatted_address?: string;
 	geometry: Geometry;
 	icon: string;
 	id: string;

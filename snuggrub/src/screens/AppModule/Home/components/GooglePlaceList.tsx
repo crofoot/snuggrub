@@ -24,6 +24,7 @@ interface Props {
 		error: RequestError;
 		data: GooglePlace[];
 	};
+	selectedSearchPlace: GooglePlace;
 }
 
 interface ModalState {
@@ -52,9 +53,16 @@ export const GooglePlaceList = (props: Props) => {
 		}
 	}, [props.selectedPlaceId]);
 
+	React.useEffect(() => {
+		if (props.selectedSearchPlace !== null) {
+			openSheet(props.selectedSearchPlace);
+		}
+	}, [props.selectedSearchPlace]);
+
 	const openSheet = (place: GooglePlace) => {
 		sheetRef.current.snapTo(1);
 		sheetRef.current.snapTo(1);
+		console.log('here');
 		setBottomPlace(place);
 	};
 

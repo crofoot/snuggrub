@@ -29,6 +29,7 @@ interface Props {
 		refetch: (promiseParams: any) => Promise<void>;
 	};
 	setPlaces: (places: GooglePlace[]) => void;
+	selectedSearchPlace: GooglePlace;
 }
 
 export const LocationResults = (props: Props) => {
@@ -69,6 +70,7 @@ export const LocationResults = (props: Props) => {
 			selectedPlaceId={props.selectedPlaceId}
 			placeResults={nearbyResults}
 			location={props.locationResults.data}
+			selectedSearchPlace={props.selectedSearchPlace}
 		/>
 	);
 

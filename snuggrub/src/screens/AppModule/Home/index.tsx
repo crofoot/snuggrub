@@ -23,6 +23,7 @@ import {
 	Image,
 	Dimensions,
 } from 'react-native';
+import { SearchList } from './SearchList';
 
 export const HomeScreen = () => {
 	const theme = useTheme();
@@ -30,6 +31,9 @@ export const HomeScreen = () => {
 	const [selectedPlaceId, setSelectedPlaceId] = React.useState(null);
 	const [search, setSearch] = React.useState('');
 	const [places, setPlaces] = React.useState<GooglePlace[]>([]);
+	const [selectedSearchPlace, setSelectedSearchPlace] = React.useState<
+		GooglePlace
+	>(null);
 	//const [coordinates, setCoordinates] = React.useState<Coordinates>();
 	const [isSearchModalVisible, setIsSearchModalVisible] = React.useState(false);
 
@@ -113,20 +117,22 @@ export const HomeScreen = () => {
 						// onFocus={openSearchModal}
 					/>
 				</SafeAreaView>
+				<SearchList
+					isVisible={search.length > 0}
+					searchText={search}
+					location={locationResults}
+					selectPlace={(p: GooglePlace) => {
+						setSelectedSearchPlace(p);
+						setSearch('');
+					}}
+				/>
 				<LocationResults
 					setPlaces={setPlaces}
 					selectedPlaceId={selectedPlaceId}
 					locationResults={locationResults}
+					selectedSearchPlace={selectedSearchPlace}
 				/>
 			</Surface>
-			<SearchModal visible={isSearchModalVisible} onClose={closeSearchModal} />
-			{/* <BottomSheet
-				ref={sheetRef}
-				initialSnap={0}
-				renderHeader={() => <BottomSheetHeader theme={theme} />}
-				snapPoints={['25%', '50%', '80%']}
-				renderContent={() => <LocationResults locationResults={locationResults} setPlaces={setPlaces} />}
-			/> */}
 		</React.Fragment>
 	);
 };

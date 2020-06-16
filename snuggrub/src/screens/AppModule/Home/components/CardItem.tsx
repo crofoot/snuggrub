@@ -159,6 +159,6 @@ const imageUri = (item: GooglePlace) => {
 			item.photos[0].photo_reference
 		}&key=${GOOGLE_API_KEY}`;
 	} catch (error) {
-		return null;
+		return undefined;
 	}
 };

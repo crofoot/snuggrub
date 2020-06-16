@@ -80,7 +80,9 @@ export const SheetPlace = (props: Props) => {
 						</Subheading>
 					</View>
 					<Subheading style={{ fontFamily: 'OpenSans', height: 21 }}>
-						{place.vicinity}
+						{place.vicinity === undefined
+							? place.formatted_address
+							: place.vicinity}
 					</Subheading>
 					<Subheading
 						style={{
@@ -88,7 +90,7 @@ export const SheetPlace = (props: Props) => {
 							fontFamily: 'OpenSans',
 							height: 40,
 						}}>
-						{place.opening_hours.open_now ? 'Open' : 'Closed'}
+						{place.opening_hours.open_now ? 'Open' : 'Closed - LIMITED HOURS'}
 						<Text style={{ color: '#404040', fontSize: 15 }}> 9am - 4pm</Text>
 					</Subheading>
 				</View>
@@ -185,9 +187,18 @@ const Menu = (props: MenuProps) => {
 	const { menuItem } = props;
 	switch (props.menuItem) {
 		case 0:
-			return [
+			return (
 				<SafeAreaView>
 					<ScrollView>
+						<View
+							style={{
+								flexDirection: 'row',
+								alignSelf: 'center',
+							}}>
+							<Text style={styles.closedFont}>
+								LIMITED MENU AVAILABLE{'\n'}
+							</Text>
+						</View>
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
@@ -219,48 +230,61 @@ const Menu = (props: MenuProps) => {
 							</Text>
 						</View>
 					</ScrollView>
-				</SafeAreaView>,
-			];
+				</SafeAreaView>
+			);
 		case 1:
-			return [
-				<View style={{ flexDirection: 'row' }}>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.closedFont}>
-						INDOOR DINING NOT AVAILABLE{'\n'}
-					</Text>
-				</View>,
-				<View style={{ flexDirection: 'row' }}>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>
-						Indoor grocery market open Monday-Friday {'\n'}-open 9 am - whenever
-						we go out of stock{'\n'}
-					</Text>
-				</View>,
-				<View style={{ flexDirection: 'row' }}>
-					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-					<Text style={styles.instructFont}>
-						(Social distance practice and masks required to enter)
-					</Text>
-				</View>,
-			];
+			return (
+				<React.Fragment>
+					<View
+						style={{
+							flexDirection: 'row',
+							alignSelf: 'center',
+						}}>
+						<Text style={styles.closedFont}>LIMITED MENU AVAILABLE{'\n'}</Text>
+					</View>
+					<View style={{ flexDirection: 'row' }}>
+						<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+						<Text style={styles.closedFont}>
+							INDOOR DINING NOT AVAILABLE{'\n'}
+						</Text>
+					</View>
+					<View style={{ flexDirection: 'row' }}>
+						<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+						<Text style={styles.instructFont}>
+							Indoor grocery market open Monday-Friday {'\n'}-open 9 am -
+							whenever we go out of stock{'\n'}
+						</Text>
+					</View>
+
+					<View style={{ flexDirection: 'row' }}>
+						<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+						<Text style={styles.instructFont}>
+							(Social distance practice and masks required to enter)
+						</Text>
+					</View>
+				</React.Fragment>
+			);
 		case 2:
-			return [
+			return (
 				<SafeAreaView>
 					<ScrollView>
-						<View style={{ flexDirection: 'row' }}>
-							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-							<Text style={styles.instructFont}>
-								Delivery instructions{'\n'}
+						<View
+							style={{
+								flexDirection: 'row',
+								alignSelf: 'center',
+							}}>
+							<Text style={styles.closedFont}>
+								LIMITED MENU AVAILABLE{'\n'}
 							</Text>
 						</View>
-						,
+
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
 								Order from our limited menu online or over phone {'\n'}
 							</Text>
 						</View>
-						,
+
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
@@ -268,7 +292,7 @@ const Menu = (props: MenuProps) => {
 								delivered{'\n'}
 							</Text>
 						</View>
-						,
+
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
@@ -278,24 +302,29 @@ const Menu = (props: MenuProps) => {
 							</Text>
 						</View>
 					</ScrollView>
-				</SafeAreaView>,
-			];
+				</SafeAreaView>
+			);
 		case 3:
-			return [
+			return (
 				<SafeAreaView>
 					<ScrollView>
-						<View style={{ flexDirection: 'row' }}>
-							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
-							<Text style={styles.instructFont}>Pickup instructions{'\n'}</Text>
+						<View
+							style={{
+								flexDirection: 'row',
+								alignSelf: 'center',
+							}}>
+							<Text style={styles.closedFont}>
+								LIMITED MENU AVAILABLE{'\n'}
+							</Text>
 						</View>
-						,
+
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
 								Order from our limited menu online or over phone {'\n'}
 							</Text>
 						</View>
-						,
+
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
@@ -303,7 +332,7 @@ const Menu = (props: MenuProps) => {
 								{'\n'}
 							</Text>
 						</View>
-						,
+
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
@@ -321,8 +350,8 @@ const Menu = (props: MenuProps) => {
 							</Text>
 						</View>
 					</ScrollView>
-				</SafeAreaView>,
-			];
+				</SafeAreaView>
+			);
 	}
 };
 
