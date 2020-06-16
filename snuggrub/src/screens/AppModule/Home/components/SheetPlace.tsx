@@ -13,11 +13,19 @@ import {
 	Button,
 } from 'react-native-paper';
 import { Loader } from 'components/Loader';
-import { View, Text, Image, FlatList, Dimensions } from 'react-native';
+import {
+	View,
+	Text,
+	Image,
+	FlatList,
+	Dimensions,
+	StyleSheet,
+} from 'react-native';
 import { Stars } from './Stars';
 import { PriceRate } from './PriceRate';
 import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Entypo } from '@expo/vector-icons';
 
 interface Props {
 	place: GooglePlace;
@@ -144,13 +152,18 @@ export const SheetPlace = (props: Props) => {
 							onPress={() => setMenuItem(index)}
 							mode='outlined'
 							style={{
-								backgroundColor: 'white',
+								backgroundColor: menuItem === index ? '#9fb5a8' : 'white',
 								marginHorizontal: 10,
 								height: 35,
 								// width: 90,
 								// marginHorizontal: 10,
 							}}>
-							<Text>{item}</Text>
+							<Text
+								style={{
+									color: menuItem === index ? 'white' : theme.colors.text,
+								}}>
+								{item}
+							</Text>
 						</Chip>
 					)}
 				/>
@@ -171,19 +184,49 @@ const Menu = (props: MenuProps) => {
 	switch (props.menuItem) {
 		case 0:
 			return (
-				<Text>
-					outdoor dining instructions outdoor dining instructions outdoor dining
-					instructions outdoor dining instructions outdoor dining instructions
-					outdoor dining instructions outdoor dining instructions outdoor dining
-					instructions outdoor dining instructions outdoor dining instructions
-					outdoor dining instructions
-				</Text>
+				<View style={{ flexDirection: 'row' }}>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>
+						Outdoor dining available on patio and under tents
+					</Text>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>
+						Call to make reservation, may have a waitlist
+					</Text>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}> 18 tables available</Text>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}> parties of 9 max</Text>
+				</View>
 			);
 		case 1:
-			return <Text>indoor dining instructions</Text>;
+			return (
+				<View style={{ flexDirection: 'row' }}>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>indoor dining instructions</Text>
+				</View>
+			);
 		case 2:
-			return <Text>delivery instructions</Text>;
+			return (
+				<View style={{ flexDirection: 'row' }}>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>delivery instructions</Text>
+				</View>
+			);
 		case 3:
-			return <Text>pickup instructions</Text>;
+			return (
+				<View style={{ flexDirection: 'row' }}>
+					<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<Text style={styles.instructFont}>pickup instructions</Text>
+				</View>
+			);
 	}
 };
+
+const styles = StyleSheet.create({
+	instructFont: {
+		paddingLeft: 5,
+		fontSize: 16,
+		fontFamily: 'RalewayRegular',
+	},
+});
