@@ -242,8 +242,11 @@ const Menu = (props: MenuProps) => {
 						}}>
 						<Text style={styles.closedFont}>LIMITED MENU AVAILABLE{'\n'}</Text>
 					</View>
-					<View style={{ flexDirection: 'row' }}>
-						<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
+					<View
+						style={{
+							flexDirection: 'row',
+							alignSelf: 'center',
+						}}>
 						<Text style={styles.closedFont}>
 							INDOOR DINING NOT AVAILABLE{'\n'}
 						</Text>
@@ -344,7 +347,7 @@ const Menu = (props: MenuProps) => {
 						<View style={{ flexDirection: 'row' }}>
 							<Entypo style={{ paddingTop: 4 }} size={10} name='circle' />
 							<Text style={styles.instructFont}>
-								follow line-seperation markings on ground when waiting for
+								follow line-seperation markings on ground {'\n'}when waiting for
 								pickup inside and outside of building
 								{'\n'}
 							</Text>

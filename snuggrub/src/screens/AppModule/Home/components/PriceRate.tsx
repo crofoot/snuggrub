@@ -37,13 +37,13 @@ export const PriceRate = ({ rate }: { rate: number }) => {
 		<View style={{ marginRight: 10, flexDirection: 'row' }}>
 			{Array(rate)
 				.fill(0)
-				.map(() => (
-					<FilledPrice />
+				.map((_, index) => (
+					<FilledPrice key={index + 'fp'} />
 				))}
 			{Array(4 - rate)
 				.fill(0)
-				.map(() => (
-					<EmptyPrice />
+				.map((_, index) => (
+					<EmptyPrice key={index + 'ep'} />
 				))}
 		</View>
 	);

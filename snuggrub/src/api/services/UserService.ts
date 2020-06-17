@@ -16,11 +16,27 @@ export class UserService {
 			});
 	}
 
+	static signInAsGuest(): Promise<User> {
+		return auth()
+			.signInAnonymously()
+			.then((response) => {
+				return {
+					displayName: response.user.displayName,
+					email: response.user.email,
+					isNewUser: false,
+				};
+			});
+	}
+
 	static afterSignIn = () => {
 		return Promise.all([SettingsService.getSettings()]);
 	};
 
-	static async signUp(email: string, password: string, displayName): Promise<User> {
+	static async signUp(
+		email: string,
+		password: string,
+		displayName
+	): Promise<User> {
 		let user: User;
 
 		return auth()
@@ -47,7 +63,10 @@ export class UserService {
 		return false;
 	}
 
-	static loadCurrentUser(callback: (user: User | null) => void, err: () => void): void {
+	static loadCurrentUser(
+		callback: (user: User | null) => void,
+		err: () => void
+	): void {
 		const dao = new UserDao();
 		dao.loadUser(callback, err);
 	}

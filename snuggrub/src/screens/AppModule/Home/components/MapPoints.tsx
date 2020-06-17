@@ -8,10 +8,12 @@ interface Props {
 	onPress: (id: string) => void;
 }
 
+const carryOut = require('../../../../../assets/images/carry_out.png');
+const dineIn = require('../../../../../assets/images/dine_in.png');
 export const MapPoints = (props: Props) => {
 	return (
 		<React.Fragment>
-			{props.places.map((place) => {
+			{props.places.map((place, index) => {
 				return (
 					<Marker
 						onPress={() => props.onPress(place.id)}
@@ -22,7 +24,7 @@ export const MapPoints = (props: Props) => {
 						}}
 						title={place.name}>
 						<Image
-							source={require('../../../../../assets/images/carry_out.png')}
+							source={index % 2 === 0 ? carryOut : dineIn}
 							style={{ height: 25, width: 25 }}
 							resizeMode='contain'
 						/>

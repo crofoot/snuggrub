@@ -3,11 +3,12 @@ import { useLazyPromise, RequestError } from 'react-promise-hooks';
 import { SearchService } from 'services/SearchService';
 import { GooglePlace } from 'models/GooglePlace';
 import { SearchPlaceDto } from 'dto/SearchPlace.dto';
-import { View, FlatList, Dimensions } from 'react-native';
+import { View, FlatList, Dimensions, Image } from 'react-native';
 import { Loader } from 'components/Loader';
 import { Subheading, Card, Caption, useTheme } from 'react-native-paper';
 import { LocationData } from 'expo-location';
 import * as Animatable from 'react-native-animatable';
+import { GOOGLE_API_KEY } from 'utils/apiKey';
 
 interface Props {
 	isVisible: boolean;
@@ -84,8 +85,23 @@ export const SearchList = (props: Props) => {
 									marginVertical: 5,
 									borderRadius: 10,
 								}}>
-								<Card.Title title={item.name} />
-								<Caption>{item.name}</Caption>
+								<View>
+									<Image
+										source={{
+											height: 100,
+											width: Dimensions.get('screen').width * 0.9,
+											uri: imageUri(item),
+										}}
+									/>
+									<Card.Title
+										title={item.name}
+										style={{ position: 'absolute' }}
+									/>
+									<Subheading
+										style={{ paddingHorizontal: 17, position: 'absolute' }}>
+										{item.formatted_address}
+									</Subheading>
+								</View>
 							</Card>
 						);
 					}}
@@ -95,4 +111,14 @@ export const SearchList = (props: Props) => {
 	}
 
 	return null;
+};
+
+const imageUri = (item: GooglePlace) => {
+	try {
+		return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${200}&photoreference=${
+			item.photos[0].photo_reference
+		}&key=${GOOGLE_API_KEY}`;
+	} catch (error) {
+		return undefined;
+	}
 };

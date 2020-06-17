@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from 'actions/user';
 import { UserService } from 'services/UserService';
 import { setSettings } from 'actions/settings';
+import { defaultSettings } from 'models/Settings';
 
 const schema = yup.object().shape({
 	email: yup.string().required('Email is required').email(),
@@ -69,6 +70,28 @@ export const SignIn = () => {
 		}
 	};
 
+	const loginAsGuest = () => {
+		try {
+			Keyboard.dismiss();
+			if (isError) {
+				setIsError(false);
+				setErrorMessage('');
+			}
+			setIsAuthenticating(true);
+
+			UserService.signInAsGuest()
+				.then(async (user) => {
+					await dispatch(setSettings(defaultSettings));
+					dispatch(setUser(user));
+				})
+				.catch((error) => {
+					setIsError(true);
+					setErrorMessage(error.message);
+					setIsAuthenticating(false);
+				});
+		} catch (error) {}
+	};
+
 	return (
 		<AuthLayout>
 			<SignInHeader />
@@ -97,17 +120,47 @@ export const SignIn = () => {
 					onChangeText={(text) => setValue('password', text)}
 				/>
 				<ErrorMessage error={errors} property='password' />
-				<ShowPassword visible={visiblePassword} setVisiblePassword={setVisiblePassword} />
-				<Button uppercase={false} mode='contained' onPress={handleSubmit(handleSignIn)}>
-					<Text style={{ textAlignVertical: 'center', textAlign: 'center', fontSize: 22 }}>Sign In</Text>
+				<ShowPassword
+					visible={visiblePassword}
+					setVisiblePassword={setVisiblePassword}
+				/>
+				<Button
+					uppercase={false}
+					mode='contained'
+					onPress={handleSubmit(handleSignIn)}>
+					<Text
+						style={{
+							textAlignVertical: 'center',
+							textAlign: 'center',
+							fontSize: 22,
+						}}>
+						Sign In
+					</Text>
 				</Button>
-				<ForgotPasswordLink navigate={() => navigation.navigate('ForgotPassword')} />
+				<Button uppercase={false} mode='contained' onPress={loginAsGuest}>
+					<Text
+						style={{
+							textAlignVertical: 'center',
+							textAlign: 'center',
+							fontSize: 22,
+						}}>
+						Sign In As Guest
+					</Text>
+				</Button>
+				<ForgotPasswordLink
+					navigate={() => navigation.navigate('ForgotPassword')}
+				/>
 			</View>
 			<View style={{ flex: 1, alignItems: 'center' }}>
 				{isAuthenticating && <Wander color='white' />}
-				{isError && <Caption style={{ color: errorColor }}>{errorMessage}</Caption>}
+				{isError && (
+					<Caption style={{ color: errorColor }}>{errorMessage}</Caption>
+				)}
 			</View>
-			<Footer text="Don't have an account? Sign Up!" navigate={() => navigation.navigate('SignUp')} />
+			<Footer
+				text="Don't have an account? Sign Up!"
+				navigate={() => navigation.navigate('SignUp')}
+			/>
 		</AuthLayout>
 	);
 };
