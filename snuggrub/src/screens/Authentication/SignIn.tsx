@@ -95,7 +95,7 @@ export const SignIn = () => {
 	return (
 		<AuthLayout>
 			<SignInHeader />
-			<View style={{ flex: 4 }}>
+			<View style={{ flex: 5 }}>
 				<TextInput
 					label='Email'
 					theme={darkTheme}
@@ -137,6 +137,7 @@ export const SignIn = () => {
 						Sign In
 					</Text>
 				</Button>
+				<View style={{ paddingTop: 9 }}></View>
 				<Button uppercase={false} mode='contained' onPress={loginAsGuest}>
 					<Text
 						style={{
