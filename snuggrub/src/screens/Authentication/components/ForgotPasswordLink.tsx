@@ -7,7 +7,7 @@ interface Props {
 }
 export const ForgotPasswordLink = (props: Props) => {
 	return (
-		<View style={{ flex: 2, alignItems: 'center', marginTop: 5 }}>
+		<View style={{ flex: 2, alignItems: 'center', paddingTop: 5 }}>
 			<Button uppercase={false} onPress={props.navigate}>
 				<Text
 					style={{
@@ -15,7 +15,7 @@ export const ForgotPasswordLink = (props: Props) => {
 						fontSize: 14,
 						color: 'white',
 						textDecorationLine: 'underline',
-						textDecorationColor: 'white'
+						textDecorationColor: 'white',
 					}}>
 					Forgot Password?
 				</Text>

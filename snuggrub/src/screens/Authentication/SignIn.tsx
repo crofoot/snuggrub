@@ -8,14 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 import { Footer } from './components/Footer';
 import { Keyboard, View, Text } from 'react-native';
 import { AuthLayout } from './components/AuthLayout';
-import { Wander } from 'react-native-animated-spinkit';
+import { Wander, Flow } from 'react-native-animated-spinkit';
 import { SignInHeader } from './components/SignInHeader';
 import { ShowPassword } from './components/ShowPassword';
 import { ErrorMessage } from './components/ErrorMessage';
 import { TextInput, Button, Caption } from 'react-native-paper';
 import { ForgotPasswordLink } from './components/ForgotPasswordLink';
 
-import { darkTheme } from 'theme/types';
+import { darkTheme, lightTheme } from 'theme/types';
 import { useDispatch } from 'react-redux';
 import { setUser } from 'actions/user';
 import { UserService } from 'services/UserService';
@@ -98,7 +98,12 @@ export const SignIn = () => {
 			<View style={{ flex: 5 }}>
 				<TextInput
 					label='Email'
-					theme={darkTheme}
+					theme={{
+						...lightTheme,
+						colors: {
+							error: '#911919',
+						},
+					}}
 					returnKeyType='done'
 					autoCapitalize='none'
 					keyboardAppearance='dark'
@@ -107,10 +112,15 @@ export const SignIn = () => {
 					style={{ backgroundColor: secondaryColor }}
 					onChangeText={(text) => setValue('email', text)}
 				/>
-				<ErrorMessage error={errors} property='email' />
+				<ErrorMessage error={errors} property='email' color='#911919' />
 				<TextInput
 					label='Password'
-					theme={darkTheme}
+					theme={{
+						...lightTheme,
+						colors: {
+							error: '#911919',
+						},
+					}}
 					autoCapitalize='none'
 					returnKeyType='done'
 					keyboardAppearance='dark'
@@ -119,7 +129,7 @@ export const SignIn = () => {
 					style={{ backgroundColor: secondaryColor, color: 'white' }}
 					onChangeText={(text) => setValue('password', text)}
 				/>
-				<ErrorMessage error={errors} property='password' />
+				<ErrorMessage error={errors} property='password' color='#911919' />
 				<ShowPassword
 					visible={visiblePassword}
 					setVisiblePassword={setVisiblePassword}
@@ -137,13 +147,21 @@ export const SignIn = () => {
 						Sign In
 					</Text>
 				</Button>
-				<View style={{ paddingTop: 9 }}></View>
-				<Button uppercase={false} mode='contained' onPress={loginAsGuest}>
+				{/* </View>
+			<View style={{ flex: 1 }}> */}
+				<Button
+					uppercase={false}
+					mode='text'
+					onPress={loginAsGuest}
+					style={{ marginTop: 10 }}>
 					<Text
 						style={{
 							textAlignVertical: 'center',
 							textAlign: 'center',
-							fontSize: 22,
+							fontSize: 14,
+							color: 'white',
+							textDecorationLine: 'underline',
+							textDecorationColor: 'white',
 						}}>
 						Sign In As Guest
 					</Text>
@@ -153,7 +171,7 @@ export const SignIn = () => {
 				/>
 			</View>
 			<View style={{ flex: 1, alignItems: 'center' }}>
-				{isAuthenticating && <Wander color='white' />}
+				{isAuthenticating && <Flow color='white' />}
 				{isError && (
 					<Caption style={{ color: errorColor }}>{errorMessage}</Caption>
 				)}

@@ -9,13 +9,13 @@ import { useNavigation } from '@react-navigation/native';
 import { Footer } from './components/Footer';
 import { Keyboard, View, Text } from 'react-native';
 import { AuthLayout } from './components/AuthLayout';
-import { Wander } from 'react-native-animated-spinkit';
+import { Wander, Flow } from 'react-native-animated-spinkit';
 import { SignUpHeader } from './components/SignUpHeader';
 import { ShowPassword } from './components/ShowPassword';
 import { ErrorMessage } from './components/ErrorMessage';
 import { TextInput, Button, Caption } from 'react-native-paper';
 
-import { darkTheme } from 'theme/types';
+import { darkTheme, lightTheme } from 'theme/types';
 import { useDispatch } from 'react-redux';
 import { secondaryColor } from 'theme/colors';
 import { UserService } from 'services/UserService';
@@ -85,7 +85,12 @@ export const SignUp = () => {
 				<TextInput
 					autoCorrect={false}
 					label='Full Name'
-					theme={darkTheme}
+					theme={{
+						...lightTheme,
+						colors: {
+							error: '#911919',
+						},
+					}}
 					returnKeyType='done'
 					autoCapitalize='words'
 					keyboardAppearance='dark'
@@ -93,11 +98,16 @@ export const SignUp = () => {
 					style={{ backgroundColor: secondaryColor }}
 					onChangeText={(text) => setValue('displayName', text)}
 				/>
-				<ErrorMessage error={errors} property='displayName' />
+				<ErrorMessage error={errors} property='displayName' color='#911919' />
 				<TextInput
 					autoCorrect={false}
 					label='Email'
-					theme={darkTheme}
+					theme={{
+						...lightTheme,
+						colors: {
+							error: '#911919',
+						},
+					}}
 					returnKeyType='done'
 					autoCapitalize='none'
 					keyboardAppearance='dark'
@@ -106,10 +116,15 @@ export const SignUp = () => {
 					style={{ backgroundColor: secondaryColor }}
 					onChangeText={(text) => setValue('email', text)}
 				/>
-				<ErrorMessage error={errors} property='email' />
+				<ErrorMessage error={errors} property='email' color='#911919' />
 				<TextInput
 					label='Password'
-					theme={darkTheme}
+					theme={{
+						...lightTheme,
+						colors: {
+							error: '#911919',
+						},
+					}}
 					returnKeyType='done'
 					autoCapitalize='none'
 					keyboardAppearance='dark'
@@ -118,10 +133,15 @@ export const SignUp = () => {
 					style={{ backgroundColor: secondaryColor }}
 					onChangeText={(text) => setValue('password', text)}
 				/>
-				<ErrorMessage error={errors} property='password' />
+				<ErrorMessage error={errors} property='password' color='#911919' />
 				<TextInput
 					label='Confirm Password'
-					theme={darkTheme}
+					theme={{
+						...lightTheme,
+						colors: {
+							error: '#911919',
+						},
+					}}
 					returnKeyType='done'
 					autoCapitalize='none'
 					keyboardAppearance='dark'
@@ -130,17 +150,39 @@ export const SignUp = () => {
 					style={{ backgroundColor: secondaryColor }}
 					onChangeText={(text) => setValue('confirmPassword', text)}
 				/>
-				<ErrorMessage error={errors} property='confirmPassword' />
-				<ShowPassword visible={visiblePassword} setVisiblePassword={setVisiblePassword} />
-				<Button uppercase={false} mode='contained' onPress={handleSubmit(handleSignUp)}>
-					<Text style={{ textAlignVertical: 'center', textAlign: 'center', fontSize: 22 }}>Sign Up</Text>
+				<ErrorMessage
+					error={errors}
+					property='confirmPassword'
+					color='#911919'
+				/>
+				<ShowPassword
+					visible={visiblePassword}
+					setVisiblePassword={setVisiblePassword}
+				/>
+				<Button
+					uppercase={false}
+					mode='contained'
+					onPress={handleSubmit(handleSignUp)}>
+					<Text
+						style={{
+							textAlignVertical: 'center',
+							textAlign: 'center',
+							fontSize: 22,
+						}}>
+						Sign Up
+					</Text>
 				</Button>
 			</View>
 			<View style={{ flex: 1, alignItems: 'center' }}>
-				{isAuthenticating && <Wander color='white' />}
-				{isError && <Caption style={{ color: errorColor }}>{errorMessage}</Caption>}
+				{isAuthenticating && <Flow color='white' />}
+				{isError && (
+					<Caption style={{ color: errorColor }}>{errorMessage}</Caption>
+				)}
 			</View>
-			<Footer text='Already have an account? Sign In!' navigate={() => navigation.navigate('SignIn')} />
+			<Footer
+				text='Already have an account? Sign In!'
+				navigate={() => navigation.navigate('SignIn')}
+			/>
 		</AuthLayout>
 	);
 };

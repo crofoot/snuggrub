@@ -23,7 +23,14 @@ export const Footer = (props: Props) => {
 					{props.text}
 				</Text>
 			</Button>
-			<Caption style={{ textAlign: 'center', textAlignVertical: 'center', color: darkSecondaryColor }}>v {Constants.manifest.version}</Caption>
+			<Caption
+				style={{
+					textAlign: 'center',
+					textAlignVertical: 'center',
+					color: darkSecondaryColor,
+				}}>
+				v {Constants.manifest.version}
+			</Caption>
 		</View>
 	);
 };

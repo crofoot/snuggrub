@@ -85,23 +85,10 @@ export const SearchList = (props: Props) => {
 									marginVertical: 5,
 									borderRadius: 10,
 								}}>
-								<View>
-									<Image
-										source={{
-											height: 100,
-											width: Dimensions.get('screen').width * 0.9,
-											uri: imageUri(item),
-										}}
-									/>
-									<Card.Title
-										title={item.name}
-										style={{ position: 'absolute' }}
-									/>
-									<Subheading
-										style={{ paddingHorizontal: 17, position: 'absolute' }}>
-										{item.formatted_address}
-									</Subheading>
-								</View>
+								<Card.Title title={item.name} />
+								<Subheading style={{ paddingHorizontal: 17 }}>
+									{item.formatted_address}
+								</Subheading>
 							</Card>
 						);
 					}}

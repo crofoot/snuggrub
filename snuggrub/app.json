@@ -1,6 +1,7 @@
 {
 	"expo": {
 		"name": "Snuggrub",
+		"description": "test",
 		"slug": "snuggrub",
 		"platforms": ["ios", "android", "web"],
 		"version": "1.0.0",
@@ -8,8 +9,8 @@
 		"icon": "./assets/icon.png",
 		"splash": {
 			"image": "./assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#000000"
+			"resizeMode": "cover",
+			"backgroundColor": "#FFFFFF"
 		},
 		"updates": {
 			"fallbackToCacheTimeout": 0
