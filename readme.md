@@ -16,6 +16,9 @@ Application created by [Emily Sullivan](https://www.linkedin.com/in/emily-s-412b
 ### Want to check out Snuggrub?
 
 Download the Expo app on IOS or Android! Then scan the QR Code here! https://expo.io/@eksulliv/snuggrub
+* To test on IOS: Pull down locally, run npm install in `snuggrub`, add api keys and run `expo start`
+* To test on Android: You can scan the QR Code from the Expo link.
+* If you want to test on the web go to https://expo.io/@eksulliv/snuggrub, click "Open project in the browser", click "Open Project"
 
 ### How to pull down and run
 
