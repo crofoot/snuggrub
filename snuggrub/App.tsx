@@ -6,14 +6,11 @@ import { initializeApp } from 'firebase/app';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
+import { firebaseConfig } from 'utils/apiKey';
 import { Application } from './src/Application';
 
 import 'firebase/firestore';
 // firebase initialization
-
-let firebaseConfig = {
-	// FIREBASE API KEY GOES HERE
-};
 
 initializeApp(firebaseConfig);
 // end of firebase initialization
