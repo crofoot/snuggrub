@@ -1,12 +1,13 @@
 {
 	"expo": {
 		"name": "Snuggrub",
-		"description": "Application created by Emily Sullivan and Dominic Crofoot for the USM COVID App Challenge - Snuggrub is an app to help essential restaurant workers and Marylanders stay informed and safe when ordering food during this and future pandemic outbreaks. With the use of Google Places API, snuggrub collects and formats data for users to quickly get the information they need to stay safe when getting food while also making it easier to give their business to local companies that may be struggling during this time. HOW TO USE: install Expo app on iOS or Android device, then scan the QR code on this page. Github Link: https://github.com/crofoot/snuggrub",
+		"description": "Application created by Emily Sullivan and Dominic Crofoot for the USM COVID App Challenge - Snuggrub is an app to help essential restaurant workers and Marylanders stay informed and safe when ordering food during this and future pandemic outbreaks. With the use of Google Places API, snuggrub collects and formats data for users to quickly get the information they need to stay safe when getting food while also making it easier to give their business to local companies that may be struggling during this time. HOW TO USE: install Expo app on iOS or Android device, then scan the QR code on this page. Github Link: https://github.com/crofoot/snuggrub . If you are having issues running with the QR code - please try to use the web emulator on this page by clicking the text OPEN PROJECT IN BROWSER. This will start an emulator but will not give you full functionality of the app. You may also follow instructions in the Github readme about how to create necessary keys and how to correctly pull the project down for testing.",
 		"slug": "snuggrub",
 		"platforms": ["ios", "android", "web"],
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
+		"privacy": "public",
 		"splash": {
 			"image": "./assets/splash.png",
 			"resizeMode": "cover",

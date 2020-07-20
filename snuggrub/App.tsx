@@ -11,14 +11,14 @@ import { Application } from './src/Application';
 import 'firebase/firestore';
 // firebase initialization
 let firebaseConfig = {
-	apiKey: 'AIzaSyCDrhWeZmcp27Ch5GEgILvY_hPzkGmuYgA',
-	authDomain: 'snuggrub-development.firebaseapp.com',
-	databaseURL: 'https://snuggrub-development.firebaseio.com',
-	projectId: 'snuggrub-development',
-	storageBucket: 'snuggrub-development.appspot.com',
-	messagingSenderId: '1007510186615',
-	appId: '1:1007510186615:web:33acffa5946152fc993472',
-	measurementId: 'G-86V2GZ9MWW',
+	apiKey: 'AIzaSyDWetFkZk81dplZK4AYG5BMLetYO8a-3Lc',
+	authDomain: 'arboreal-drake-279319.firebaseapp.com',
+	databaseURL: 'https://arboreal-drake-279319.firebaseio.com',
+	projectId: 'arboreal-drake-279319',
+	storageBucket: 'arboreal-drake-279319.appspot.com',
+	messagingSenderId: '761245227426',
+	appId: '1:761245227426:web:f2ec5b150afc4f271d7afb',
+	measurementId: 'G-N9EP6LBCWD',
 };
 initializeApp(firebaseConfig);
 // end of firebase initialization
