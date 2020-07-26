@@ -8,7 +8,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import { Dimensions, Image, View } from 'react-native';
 import { Card, Title, TouchableRipple } from 'react-native-paper';
-import { blue100 } from 'react-native-paper/lib/typescript/src/styles/colors';
 
 interface Props {
 	item: GooglePlace;

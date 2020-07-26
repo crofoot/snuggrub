@@ -62,7 +62,6 @@ export const GooglePlaceList = (props: Props) => {
 	const openSheet = (place: GooglePlace) => {
 		sheetRef.current.snapTo(1);
 		sheetRef.current.snapTo(1);
-		console.log('here');
 		setBottomPlace(place);
 	};
 

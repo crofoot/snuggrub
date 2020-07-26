@@ -25,9 +25,16 @@ import {
 } from 'react-native';
 import { Stars } from './Stars';
 import { PriceRate } from './PriceRate';
-import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Entypo } from '@expo/vector-icons';
+import {
+	summarizeText,
+	createAudioFile,
+	fetchAndPlayAudioFile,
+} from 'utils/textToSpeech';
+
+// import { IamAuthenticator } from 'ibm-watson/auth';
+// import TextToSpeechV1 from 'ibm-watson/text-to-speech/v1';
 
 interface Props {
 	place: GooglePlace;
@@ -36,7 +43,9 @@ interface Props {
 export const SheetPlace = (props: Props) => {
 	const theme = useTheme();
 	const [menuItem, setMenuItem] = React.useState(0);
+	const [loadingAudio, setLoadingAudio] = React.useState(false);
 	const { place } = props;
+
 	if (place === null) {
 		return (
 			<View
@@ -46,12 +55,46 @@ export const SheetPlace = (props: Props) => {
 		);
 	}
 
+	const onPressAudio = () => {
+		Promise.resolve(setLoadingAudio(true))
+			.then(handleAudio)
+			.catch(() => {
+				alert('An error occurred while translating to audio');
+			})
+			.finally(() => {
+				setLoadingAudio(false);
+			});
+	};
+
+	const handleAudio = async () => {
+		const text = summarizeText(
+			props.place,
+			'Outdoor dining available on patio (Weather permitted) and undertents.',
+			'12 tables available.',
+			'Max party size of 6.',
+			"Call to make reservation as a waitlist may form and opentable won't be updated.",
+			'Only one person from table allowed at bar to order at a time.'
+		);
+
+		const fileName = await createAudioFile(text);
+		if (fileName) {
+			await fetchAndPlayAudioFile(fileName);
+		} else {
+			console.log('error');
+		}
+	};
+
 	return (
 		<View
 			style={{
 				height: '100%',
 				backgroundColor: theme.colors.background,
 			}}>
+			<Button disabled={loadingAudio} onPress={onPressAudio}>
+				<Subheading>
+					{loadingAudio ? 'Loading Audio...' : 'Text to Speech'}
+				</Subheading>
+			</Button>
 			<View style={{ paddingLeft: 7 }}>
 				<Headline style={{ paddingLeft: 4 }}>{place.name}</Headline>
 				<View style={{ flexDirection: 'row', height: 17 }}>
