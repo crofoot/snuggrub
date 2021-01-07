@@ -6,7 +6,7 @@
 
 [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat&logo=EXPO&labelColor=ffffff&logoColor=000)](https://expo.io/@eksulliv/snuggrub)
 
-[Video Demonstration](<a href="https://expo.io/@eksulliv/snuggrub">)
+[Video Demonstration](https://expo.io/@eksulliv/snuggrub)
 
 </div>
 </div>
