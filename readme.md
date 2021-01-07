@@ -10,6 +10,7 @@
 
 </div>
 </div>
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 
 Application created by [Emily Sullivan](https://www.linkedin.com/in/emily-s-412b5693/) and [Dominic Crofoot](https://www.linkedin.com/in/dominic-crofoot-200756112/) for the USM COVID App Challenge - Snuggrub is an app to help essential restaurant workers and Marylanders stay informed and safe when ordering food during this and future pandemic outbreaks. With the use of Google Places API, snuggrub collects and formats data for users to quickly get the information they need to stay safe when getting food while also making it easier to give their business to local companies that may be struggling during this time.
 
