@@ -6,6 +6,9 @@
 
 [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat&logo=EXPO&labelColor=ffffff&logoColor=000)](https://expo.io/@eksulliv/snuggrub)
 
+<a href="https://expo.io/@eksulliv/snuggrub">https://www.youtube.com/watch?v=lH3xbB0newc&t=1s&ab_channel=USMCommunications >
+Video Demonstration
+
 </div>
 </div>
 
